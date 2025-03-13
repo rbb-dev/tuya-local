@@ -1,0 +1,47 @@
+name: Tuya Wireless Switch
+products:
+  - id: ja5osu5g
+    name: Tuya Wireless Switch
+    model: ZC-YED
+entities:
+  - entity: event
+    class: button
+    dps:
+      - id: 1
+        type: string
+        name: event
+        mapping:
+          - dps_val: click
+            value: single_click
+          - dps_val: double_click
+            value: double_click
+          - dps_val: press
+            value: long_press
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: select
+    name: Mode
+    category: config
+    dps:
+      - id: 11
+        type: string
+        name: option
+        mapping:
+          - dps_val: remote_control
+            value: Remote Control
+          - dps_val: wireless_switch
+            value: Wireless Switch
+  - entity: sensor
+    name: Scene Preset
+    category: diagnostic
+    dps:
+      - id: 14
+        type: string
+        name: sensor
+        optional: true
