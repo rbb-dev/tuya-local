@@ -1,0 +1,114 @@
+name: Tuya Human presence sensor
+products:
+  - id: kb5noeto
+    name: Tuya Presence and Motion Sensor
+    model: ZG-204ZM
+entities:
+  - entity: binary_sensor
+    name: Presence
+    class: occupancy
+    category: diagnostic
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: false
+          - dps_val: presence
+            value: true
+  - entity: sensor
+    class: illuminance
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: "lux"
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Human Motion State
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+  - entity: number
+    name: Sensitivity
+    category: config
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: "x"
+        range:
+          min: 0
+          max: 10
+  - entity: number
+    name: Far Detection Distance
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 0
+          max: 1000
+  - entity: number
+    name: Presence Hold Time
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 28800
+  - entity: select
+    name: Motion Detection Mode
+    category: config
+    dps:
+      - id: 122
+        type: string
+        name: option
+        mapping:
+          - dps_val: Only_PIR
+            value: Only PIR
+          - dps_val: PIR_radar
+            value: PIR + Radar
+          - dps_val: Only_radar
+            value: Only Radar
+  - entity: number
+    name: Motion Detection Sensitivity
+    category: config
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        unit: x
+        range:
+          min: 0
+          max: 10
+  - entity: switch
+    name: Indicator
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Firmware Version
+    category: diagnostic
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
