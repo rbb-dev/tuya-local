@@ -1,0 +1,496 @@
+name: Matismart BPM3110 energy sensor
+products:
+  - id: vowqogd4woktqu9y
+    name: Matismart BPM3110
+entities:
+  - entity: number
+    name: "Report interval"
+    icon: "mdi:timer-refresh"
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 60
+        mapping:
+          - scale: 1
+#  - entity: sensor
+#    class: energy
+#    name: "Total Forward Energy"
+#    icon: "mdi:lightning-bolt"
+#    dps:
+#      - id: 1
+#        type: integer
+#        name: sensor
+#        unit: kWh
+#        optional: true
+#        class: total_increasing
+#        mapping:
+#          - scale: 100
+#  - entity: sensor
+#    name: "Voltage X"
+#    icon: "mdi:sine-wave"
+#    class: voltage
+#    category: diagnostic
+#    dps:
+#      - id: 6
+#        type: base64
+#        name: sensor
+#        optional: true
+#        unit: V
+#        mask: "FFFF000000000000"
+#        mapping:
+#          - scale: 10
+#  - entity: sensor
+#    name: "Current X"
+#    icon: "mdi:current-ac"
+#    class: current
+#    category: diagnostic
+#    dps:
+#      - id: 6
+#        type: base64
+#        name: sensor
+#        optional: true
+#        unit: A
+#        mask: "0000FFFFFF000000"
+#        mapping:
+#          - scale: 1000
+#  - entity: sensor
+#    name: "Power X"
+#    icon: "mdi:flash"
+#    class: power
+#    category: diagnostic
+#    dps:
+#      - id: 6
+#        type: base64
+#        name: sensor
+#        optional: true
+#        unit: kW
+#        mask: "0000000000FFFFFF"
+#        mapping:
+#          - scale: 1000
+#  - entity: sensor
+#    name: "Voltage Y"
+#    icon: "mdi:sine-wave"
+#    class: voltage
+#    category: diagnostic
+#    dps:
+#      - id: 7
+#        type: base64
+#        name: sensor
+#        optional: true
+#        unit: V
+#        mask: "FFFF000000000000"
+#        mapping:
+#          - scale: 10
+#  - entity: sensor
+#    name: "Current Y"
+#    icon: "mdi:current-ac"
+#    class: current
+#    category: diagnostic
+#    dps:
+#      - id: 7
+#        type: base64
+#        name: sensor
+#        optional: true
+#        unit: A
+#        mask: "0000FFFFFF000000"
+#        mapping:
+#          - scale: 1000
+#  - entity: sensor
+#    name: "Power Y"
+#    icon: "mdi:flash"
+#    class: power
+#    category: diagnostic
+#    dps:
+#      - id: 7
+#        type: base64
+#        name: sensor
+#        optional: true
+#        unit: kW
+#        mask: "0000000000FFFFFF"
+#        mapping:
+#          - scale: 1000
+#  - entity: sensor
+#    name: "Voltage Z"
+#    icon: "mdi:sine-wave"
+#    class: voltage
+#    category: diagnostic
+#    dps:
+#      - id: 8
+#        type: base64
+#        name: sensor
+#        optional: true
+#        unit: V
+#        mask: "FFFF000000000000"
+#        mapping:
+#          - scale: 10
+#  - entity: sensor
+#    name: "Current Z"
+#    icon: "mdi:current-ac"
+#    class: current
+#    category: diagnostic
+#    dps:
+#      - id: 8
+#        type: base64
+#        name: sensor
+#        optional: true
+#        unit: A
+#        mask: "0000FFFFFF000000"
+#        mapping:
+#          - scale: 1000
+#  - entity: sensor
+#    name: "Power Z"
+#    icon: "mdi:flash"
+#    class: power
+#    category: diagnostic
+#    dps:
+#      - id: 8
+#        type: base64
+#        name: sensor
+#        optional: true
+#        unit: kW
+#        mask: "0000000000FFFFFF"
+#        mapping:
+#          - scale: 1000
+#  - entity: sensor
+#    name: "Active Alarm"
+#    icon: "mdi:alert-octagon"
+#    category: diagnostic
+#    class: enum
+#    dps:
+#      - id: 9
+#        type: bitfield
+#        optional: true
+#        name: sensor
+#        mapping:
+#          - dps_val: 0  # Bit 0
+#            value: "OK"
+#          - dps_val: 1  # Bit 0
+#            value: "Short Circuit"
+#          - dps_val: 2  # Bit 1
+#            value: "Surge"
+#          - dps_val: 4  # Bit 2
+#            value: "Overload"
+#          - dps_val: 8  # Bit 3
+#            value: "Leakage current"
+#          - dps_val: 16  # Bit 4
+#            value: "Temperature"
+#          - dps_val: 32  # Bit 5
+#            value: "Fire"
+#          - dps_val: 64  # Bit 6
+#            value: "High Power"
+#          - dps_val: 128  # Bit 7
+#            value: "Self-Test abormal"
+#          - dps_val: 256  # Bit 8
+#            value: "Overcurrent"
+#          - dps_val: 512  # Bit 9
+#            value: "3-Phase Imbalance"
+#          - dps_val: 1024  # Bit 10
+#            value: "Overvoltage"
+#          - dps_val: 2048  # Bit 11
+#            value: "Undervoltage"
+#          - dps_val: 4096  # Bit 12
+#            value: "Missing Phase"
+#          - dps_val: 8192  # Bit 13
+#            value: "Power Outage"
+#          - dps_val: 16384  # Bit 14
+#            value: "Magnetic Interference"
+#          - dps_val: 32768  # Bit 15
+#            value: "Low Credit"
+#          - dps_val: 65536  # Bit 16
+#            value: "No Balance"
+#      - id: 9
+#        type: bitfield
+#        name: fault_code
+#        optional: true
+  - entity: button
+    name: "Energy Reset"
+    icon: "mdi:recycle"
+    class: restart
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: button
+        optional: true
+#  - entity: sensor
+#    name: "Breaker ID"
+#    icon: "mdi:identifier"
+#    category: diagnostic
+#    dps:
+#      - id: 19
+#        name: sensor
+#        optional: true
+#        type: string
+#  - entity: sensor
+#    class: energy
+#    name: "Total Reverse Energy"
+#    icon: "mdi:lightning-bolt"
+#    dps:
+#      - id: 23
+#        type: integer
+#        name: sensor
+#        optional: true
+#        unit: kWh
+#        class: total_increasing
+#        mapping:
+#          - scale: 100
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    icon: "mdi:sine-wave"
+    dps:
+      - id: 32
+        type: integer
+        name: sensor
+        optional: true
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+#  - entity: sensor
+#    class: power_factor
+#    category: diagnostic
+#    dps:
+#      - id: 50
+#        type: integer
+#        name: sensor
+#        optional: true
+#        class: measurement
+#        mapping:
+#          - scale: 100
+  - entity: sensor
+    name: "Voltage L1"
+    icon: "mdi:sine-wave"
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: "Current L1"
+    icon: "mdi:current-ac"
+    class: current
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: "Power L1"
+    icon: "mdi:flash"
+    class: power
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: "Power Factor L1"
+    icon: "mdi:flash"
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        optional: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    name: "Total Import Energy L1"
+    icon: "mdi:lightning-bolt"
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kWh
+        optional: true
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    name: "Total Export Energy L1"
+    icon: "mdi:lightning-bolt"
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: kWh
+        optional: true
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: "Voltage L2"
+    icon: "mdi:sine-wave"
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: "Current L2"
+    icon: "mdi:current-ac"
+    class: current
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: "Power L2"
+    icon: "mdi:flash"
+    class: power
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: "Power Factor L2"
+    icon: "mdi:flash"
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        optional: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    name: "Total Import Energy L2"
+    icon: "mdi:lightning-bolt"
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: kWh
+        optional: true
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    name: "Total Export Energy L2"
+    icon: "mdi:lightning-bolt"
+    dps:
+      - id: 119
+        type: integer
+        name: sensor
+        unit: kWh
+        optional: true
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: "Voltage L3"
+    icon: "mdi:sine-wave"
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: "Current L3"
+    icon: "mdi:current-ac"
+    class: current
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: "Power L3"
+    icon: "mdi:flash"
+    class: power
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: "Power Factor L3"
+    icon: "mdi:flash"
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        optional: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    name: "Total Import Energy L3"
+    icon: "mdi:lightning-bolt"
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+        unit: kWh
+        optional: true
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: energy
+    name: "Total Export Energy L3"
+    icon: "mdi:lightning-bolt"
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        unit: kWh
+        optional: true
+        class: total_increasing
+        mapping:
+          - scale: 100
