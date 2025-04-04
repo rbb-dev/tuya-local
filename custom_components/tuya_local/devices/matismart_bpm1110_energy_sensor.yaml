@@ -1,0 +1,158 @@
+name: matismart BPM1110 Tuya Energy Sensor for MCB single phase
+products:
+  - id: aqktrdhlsw8q90dr
+    name: SPM01_WiFi_V2
+entities:
+  - entity: sensor
+    class: energy
+    name: "Total Forward Energy"
+    icon: "mdi:lightning-bolt"
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        class: measurement
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        name: sensor
+        unit: A
+        class: measurement
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        name: sensor
+        unit: kW
+        class: measurement
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: "Active Alarm"
+    icon: "mdi:alert-octagon"
+    category: diagnostic
+    class: enum
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0  # Bit 0
+            value: "OK"
+          - dps_val: 1  # Bit 0
+            value: "Short Circuit"
+          - dps_val: 2  # Bit 1
+            value: "Surge"
+          - dps_val: 4  # Bit 2
+            value: "Overload"
+          - dps_val: 8  # Bit 3
+            value: "Leakage current"
+          - dps_val: 16  # Bit 4
+            value: "Temperature"
+          - dps_val: 32  # Bit 5
+            value: "Fire"
+          - dps_val: 64  # Bit 6
+            value: "High Power"
+          - dps_val: 128  # Bit 7
+            value: "Self-Test abormal"
+          - dps_val: 256  # Bit 8
+            value: "Overcurrent"
+          - dps_val: 512  # Bit 9
+            value: "3-Phase Imbalance"
+          - dps_val: 1024  # Bit 10
+            value: "Overvoltage"
+          - dps_val: 2048  # Bit 11
+            value: "Undervoltage"
+          - dps_val: 4096  # Bit 12
+            value: "Missing Phase"
+          - dps_val: 8192  # Bit 13
+            value: "Power Outage"
+          - dps_val: 16384  # Bit 14
+            value: "Magnetic Interference"
+          - dps_val: 32768  # Bit 15
+            value: "Low Credit"
+          - dps_val: 65536  # Bit 16
+            value: "No Balance"
+      - id: 9
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: button
+    name: "Energy Reset"
+    icon: "mdi:recycle"
+    class: restart
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: "Breaker ID"
+    icon: "mdi:identifier"
+    category: diagnostic
+    dps:
+      - id: 19
+        name: sensor
+        type: string
+  - entity: sensor
+    class: energy
+    name: "Total Reverse Energy"
+    icon: "mdi:lightning-bolt"
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    icon: "mdi:sine-wave"
+    dps:
+      - id: 32
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 50
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
