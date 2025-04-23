@@ -1,0 +1,48 @@
+name: Sync Fork with Upstream
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Every Monday at 00:00 UTC
+  workflow_dispatch:       # Allows manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout your fork
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          fetch-depth: 0  # Needed for full history and rebase
+
+      - name: Set up Git config
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Add upstream and fetch
+        run: |
+          git remote add upstream https://github.com/make-all/tuya-local.git
+          git fetch upstream
+
+      - name: Rebase main onto upstream/main
+        run: |
+          git checkout main
+          git rebase upstream/main
+
+      - name: Tag new release if tag does not already exist
+        run: |
+          TAG=$(date +%-Y.%-m.%d)
+          echo "Generated tag: $TAG"
+          if ! git rev-parse "$TAG" >/dev/null 2>&1; then
+            git tag "$TAG"
+            echo "Tag $TAG created."
+          else
+            echo "Tag $TAG already exists. Skipping tagging."
+          fi
+
+      - name: Push changes and tag
+        run: |
+          git push origin main --force
+          git push origin --tags
