@@ -148,10 +148,3 @@ entities:
       - id: 32
         type: string
         name: sensor
-  - entity: sensor
-    name: Fault bitmap
-    category: diagnostic
-    dps:
-      - id: 45
-        type: bitfield
-        name: fault_code
